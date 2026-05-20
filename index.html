@@ -4,129 +4,205 @@
 <meta charset="UTF-8">
 <title>Activity 1: Vocabulary</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5ecd8;
-    margin: 0;
-    padding: 0;
-    color: #222;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background: #f5ecd8;
+  margin: 0;
+  color: #222;
+}
+.header {
+  background: #49a4b7;
+  color: white;
+  padding: 30px 50px;
+  font-size: 36px;
+  font-weight: bold;
+}
+.container { padding: 30px 60px; }
+.instructions {
+  font-size: 22px;
+  font-style: italic;
+  color: #15395c;
+  margin-bottom: 20px;
+}
+.word-bank {
+  background: white;
+  border: 3px solid #49a4b7;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #15395c;
+  margin-bottom: 30px;
+}
+.activity {
+  font-size: 24px;
+  line-height: 1.8;
+}
+input {
+  font-size: 22px;
+  border: none;
+  border-bottom: 2px solid #333;
+  background: transparent;
+  width: 160px;
+  text-align: center;
+}
+.feedback {
+  font-weight: bold;
+  margin-left: 10px;
+}
+.correct { color: green; }
+.incorrect { color: crimson; }
+.buttons { margin-top: 30px; }
+button {
+  font-size: 18px;
+  padding: 10px 18px;
+  margin: 6px;
+  border: none;
+  border-radius: 6px;
+  background: #15395c;
+  color: white;
+  cursor: pointer;
+}
+button:hover { background: #49a4b7; }
+.footer {
+  background: #15395c;
+  height: 35px;
+  margin-top: 40px;
+}
 
+@media print {
+  .buttons, .feedback { display: none; }
+  body { background: white; }
   .header {
-    background: #49a4b7;
-    color: white;
-    padding: 30px 50px;
-    font-size: 36px;
-    font-weight: bold;
-  }
-
-  .container {
-    padding: 30px 60px;
-  }
-
-  .instructions {
-    font-size: 22px;
-    font-style: italic;
-    color: #15395c;
-    margin-bottom: 20px;
-  }
-
-  .word-bank {
     background: white;
-    border: 3px solid #49a4b7;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: bold;
-    color: #15395c;
-    margin-bottom: 30px;
+    color: black;
+    padding: 10px 0;
   }
-
-  .word-bank span {
-    margin: 0 12px;
-  }
-
-  .activity {
-    font-size: 26px;
-    line-height: 1.8;
-  }
-
-  input {
-    font-size: 24px;
-    border: none;
-    border-bottom: 2px solid #333;
-    background: transparent;
-    width: 160px;
-    text-align: center;
-  }
-
-  .footer {
-    background: #15395c;
-    height: 35px;
-    margin-top: 40px;
-  }
+  .container { padding: 10px; }
+  .footer { display: none; }
+  input { border-bottom: 1px solid black; }
+}
 </style>
 </head>
 
 <body>
 
-  <div class="header">Activity 1: Vocabulary</div>
+<div class="header">Activity 1: Vocabulary</div>
 
-  <div class="container">
+<div class="container">
 
-    <div class="instructions">
-      Fill in the gap with the correct word or phrase.
-    </div>
+  <div class="instructions">
+    Fill in the gap with the correct word or phrase.
+  </div>
 
-    <div class="word-bank">
-      <span>refund</span> |
-      <span>warranty</span> |
-      <span>receipt</span> |
-      <span>consumer</span> |
-      <span>ACL</span> |
-      <span>faulty</span> |
-      <span>exchange</span> |
-      <span>dispute</span>
-    </div>
+  <div class="word-bank">
+    refund | warranty | receipt | consumer | ACL | faulty | exchange | dispute
+  </div>
 
-    <div class="activity">
-      1. The phone stopped working after three days — it was clearly 
-      <input type="text">.<br>
+  <div class="activity">
 
-      2. I kept my 
-      <input type="text"> 
-      in case I needed to return the product.<br>
+    1. The phone stopped working after three days — it was clearly
+    <input data-answer="faulty">.
+    <span class="feedback"></span><br>
 
-      3. The 
-      <input type="text"> 
-      I bought came with a two-year 
-      <input type="text">.<br>
+    2. I kept my
+    <input data-answer="receipt">
+    in case I needed to return the product.
+    <span class="feedback"></span><br>
 
-      4. Under the 
-      <input type="text">, 
-      you are entitled to a remedy for faulty goods.<br>
+    3. The phone I bought came with a two-year
+    <input data-answer="warranty">.
+    <span class="feedback"></span><br>
 
-      5. I asked for an 
-      <input type="text"> 
-      rather than a refund — I wanted the same item.<br>
+    4. Under the
+    <input data-answer="ACL">,
+    you are entitled to a remedy for faulty goods.
+    <span class="feedback"></span><br>
 
-      6. As a 
-      <input type="text">, 
-      you have the right to a fair deal in every purchase.<br>
+    5. I asked for an
+    <input data-answer="exchange">
+    rather than a refund — I wanted the same item.
+    <span class="feedback"></span><br>
 
-      7. We have a 
-      <input type="text"> 
-      with the store about the repair costs.<br>
+    6. As a
+    <input data-answer="consumer">,
+    you have the right to a fair deal in every purchase.
+    <span class="feedback"></span><br>
 
-      8. The store gave me a full 
-      <input type="text"> 
-      without any questions.
-    </div>
+    7. We have a
+    <input data-answer="dispute">
+    with the store about the repair costs.
+    <span class="feedback"></span><br>
+
+    8. The store gave me a full
+    <input data-answer="refund">
+    without any questions.
+    <span class="feedback"></span><br>
 
   </div>
 
-  <div class="footer"></div>
+  <div class="buttons">
+    <button onclick="checkAnswers()">Check Answers</button>
+    <button onclick="resetActivity()">Reset</button>
+    <button onclick="showAnswers()">Show Answers</button>
+    <button onclick="printWorksheet()">Print Student Worksheet</button>
+    <button onclick="printAnswerKey()">Print Answer Key / Save as PDF</button>
+  </div>
+
+</div>
+
+<div class="footer"></div>
+
+<script>
+function normalise(text) {
+  return text.trim().toLowerCase();
+}
+
+function checkAnswers() {
+  const inputs = document.querySelectorAll("input");
+  const feedbackItems = document.querySelectorAll(".feedback");
+  let score = 0;
+
+  inputs.forEach((input, index) => {
+    const answer = normalise(input.dataset.answer);
+    const studentAnswer = normalise(input.value);
+    const feedback = feedbackItems[index];
+
+    if (studentAnswer === answer) {
+      feedback.textContent = "✓ Correct";
+      feedback.className = "feedback correct";
+      score++;
+    } else {
+      feedback.textContent = "✗ Try again";
+      feedback.className = "feedback incorrect";
+    }
+  });
+
+  alert("You got " + score + " out of " + inputs.length + ".");
+}
+
+function resetActivity() {
+  document.querySelectorAll("input").forEach(input => input.value = "");
+  document.querySelectorAll(".feedback").forEach(item => item.textContent = "");
+}
+
+function showAnswers() {
+  document.querySelectorAll("input").forEach(input => {
+    input.value = input.dataset.answer;
+  });
+}
+
+function printWorksheet() {
+  resetActivity();
+  window.print();
+}
+
+function printAnswerKey() {
+  showAnswers();
+  window.print();
+}
+</script>
 
 </body>
 </html>
