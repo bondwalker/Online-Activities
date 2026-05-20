@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Routines, Past Simple and Present Perfect</title>
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --card: #ffffff;
+      --ink: #2f2f2f;
+      --muted: #666666;
+      --accent: #2f6f73;
+      --accent-light: #e2f1f0;
+      --good: #2d7a46;
+      --bad: #b23b3b;
+      --border: #dedbd2;
+      --shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2f6f73, #4b9b92);
+      color: white;
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.1rem;
+      opacity: 0.95;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 24px 16px 50px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      margin: 22px 0;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    h3 {
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .teacher-note,
+    .grammar-box {
+      background: var(--accent-light);
+      border-left: 6px solid var(--accent);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin: 16px 0;
+    }
+
+    .grammar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .grammar-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fffdf8;
+    }
+
+    .grammar-card strong {
+      color: var(--accent);
+    }
+
+    .word-bank {
+      background: #fff8df;
+      border: 1px dashed #c7a940;
+      padding: 12px;
+      border-radius: 12px;
+      margin: 14px 0;
+      font-weight: bold;
+    }
+
+    .question {
+      margin: 16px 0;
+      padding: 14px;
+      border-radius: 12px;
+      background: #fafafa;
+      border: 1px solid var(--border);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      max-width: 420px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #bbb;
+      border-radius: 10px;
+      background: white;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    .feedback {
+      display: inline-block;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    .correct {
+      color: var(--good);
+    }
+
+    .incorrect {
+      color: var(--bad);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.92;
+    }
+
+    button.secondary {
+      background: #555;
+    }
+
+    button.print {
+      background: #8a5a00;
+    }
+
+    .answers {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      background: #f1fff4;
+      border: 1px solid #aad9b5;
+      border-radius: 12px;
+    }
+
+    .answers ol {
+      margin-bottom: 0;
+    }
+
+    .matching-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+    }
+
+    .matching-table th,
+    .matching-table td {
+      border: 1px solid var(--border);
+      padding: 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .matching-table th {
+      background: var(--accent-light);
+    }
+
+    .speaking-prompts li {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      header {
+        background: white;
+        color: black;
+        padding: 16px 0;
+        border-bottom: 2px solid #000;
+      }
+
+      main {
+        max-width: 100%;
+        padding: 0;
+      }
+
+      section {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        page-break-inside: avoid;
+      }
+
+      button,
+      .button-row,
+      .feedback,
+      .teacher-note {
+        display: none !important;
+      }
+
+      input[type="text"],
+      select {
+        border: none;
+        border-bottom: 1px solid #000;
+        border-radius: 0;
+        max-width: 260px;
+      }
+
+      .answers {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Everyday Life: Past, Present and Experience</h1>
+    <p>Simple present, past simple and present perfect for beginner adult ESL students</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Grammar Reminder</h2>
+      <p>We use different tenses to talk about routines, finished past actions, and life experiences.</p>
+
+      <div class="grammar-grid">
+        <div class="grammar-card">
+          <strong>Simple present</strong>
+          <p>Use it for routines and habits.</p>
+          <p><em>I drink coffee every morning.</em></p>
+        </div>
+
+        <div class="grammar-card">
+          <strong>Past simple</strong>
+          <p>Use it for finished actions in the past.</p>
+          <p><em>I cooked dinner last night.</em></p>
+        </div>
+
+        <div class="grammar-card">
+          <strong>Present perfect</strong>
+          <p>Use it for life experiences or actions connected to now.</p>
+          <p><em>I have visited Melbourne.</em></p>
+        </div>
+      </div>
+
+      <div class="teacher-note">
+        <strong>Teacher tip:</strong> Before students start, ask them to find the time words: <em>every day, yesterday, last week, already, never, before</em>.
+      </div>
+    </section>
+
+    <section id="activity1">
+      <h2>Activity 1: Gap Fill</h2>
+      <p>Complete the sentences with the correct verb from the word bank. Change the verb if necessary.</p>
+
+      <div class="word-bank">
+        Word bank: go · eat · visit · clean · watch · buy · cook · study · have · start
+      </div>
+
+      <div class="question">
+        <label for="q1">1. I usually ______ breakfast at 7 o’clock.</label>
+        <input type="text" id="q1" data-answer="have" />
+        <span class="feedback" id="f1"></span>
+      </div>
+
+      <div class="question">
+        <label for="q2">2. She ______ English every Monday and Wednesday.</label>
+        <input type="text" id="q2" data-answer="studies" />
+        <span class="feedback" id="f2"></span>
+      </div>
+
+      <div class="question">
+        <label for="q3">3. We ______ to the supermarket yesterday.</label>
+        <input type="text" id="q3" data-answer="went" />
+        <span class="feedback" id="f3"></span>
+      </div>
+
+      <div class="question">
+        <label for="q4">4. He ______ dinner for his family last night.</label>
+        <input type="text" id="q4" data-answer="cooked" />
+        <span class="feedback" id="f4"></span>
+      </div>
+
+      <div class="question">
+        <label for="q5">5. They have ______ that movie before.</label>
+        <input type="text" id="q5" data-answer="watched" />
+        <span class="feedback" id="f5"></span>
+      </div>
+
+      <div class="question">
+        <label for="q6">6. I have never ______ Sydney.</label>
+        <input type="text" id="q6" data-answer="visited" />
+        <span class="feedback" id="f6"></span>
+      </div>
+
+      <div class="question">
+        <label for="q7">7. My brother ______ his room every weekend.</label>
+        <input type="text" id="q7" data-answer="cleans" />
+        <span class="feedback" id="f7"></span>
+      </div>
+
+      <div class="question">
+        <label for="q8">8. We have already ______ the milk.</label>
+        <input type="text" id="q8" data-answer="bought" />
+        <span class="feedback" id="f8"></span>
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkGapFill()">Check answers</button>
+        <button class="secondary" onclick="showGapAnswers()">Show answers</button>
+        <button class="secondary" onclick="resetGapFill()">Reset</button>
+        <button class="print" onclick="window.print()">Print worksheet</button>
+      </div>
+
+      <div class="answers" id="gapAnswers">
+        <h3>Answers</h3>
+        <ol>
+          <li>I usually <strong>have</strong> breakfast at 7 o’clock.</li>
+          <li>She <strong>studies</strong> English every Monday and Wednesday.</li>
+          <li>We <strong>went</strong> to the supermarket yesterday.</li>
+          <li>He <strong>cooked</strong> dinner for his family last night.</li>
+          <li>They have <strong>watched</strong> that movie before.</li>
+          <li>I have never <strong>visited</strong> Sydney.</li>
+          <li>My brother <strong>cleans</strong> his room every weekend.</li>
+          <li>We have already <strong>bought</strong> the milk.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="activity2">
+      <h2>Activity 2: Match the Sentence to the Tense</h2>
+      <p>Choose the correct tense for each sentence.</p>
+
+      <div class="question">
+        <label for="m1">1. I walk to class every day.</label>
+        <select id="m1" data-answer="simple present">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf1"></span>
+      </div>
+
+      <div class="question">
+        <label for="m2">2. She visited her friend last weekend.</label>
+        <select id="m2" data-answer="past simple">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf2"></span>
+      </div>
+
+      <div class="question">
+        <label for="m3">3. We have eaten lunch already.</label>
+        <select id="m3" data-answer="present perfect">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf3"></span>
+      </div>
+
+      <div class="question">
+        <label for="m4">4. He works in the city.</label>
+        <select id="m4" data-answer="simple present">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf4"></span>
+      </div>
+
+      <div class="question">
+        <label for="m5">5. They bought a new car in 2022.</label>
+        <select id="m5" data-answer="past simple">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf5"></span>
+      </div>
+
+      <div class="question">
+        <label for="m6">6. I have never tried Thai food.</label>
+        <select id="m6" data-answer="present perfect">
+          <option value="">Choose...</option>
+          <option value="simple present">Simple present</option>
+          <option value="past simple">Past simple</option>
+          <option value="present perfect">Present perfect</option>
+        </select>
+        <span class="feedback" id="mf6"></span>
+      </div>
+
+      <div class="button-row">
+        <button onclick="checkMatching()">Check answers</button>
+        <button class="secondary" onclick="showMatchingAnswers()">Show answers</button>
+        <button class="secondary" onclick="resetMatching()">Reset</button>
+        <button class="print" onclick="window.print()">Print worksheet</button>
+      </div>
+
+      <div class="answers" id="matchingAnswers">
+        <h3>Answers</h3>
+        <ol>
+          <li>I walk to class every day. — <strong>Simple present</strong></li>
+          <li>She visited her friend last weekend. — <strong>Past simple</strong></li>
+          <li>We have eaten lunch already. — <strong>Present perfect</strong></li>
+          <li>He works in the city. — <strong>Simple present</strong></li>
+          <li>They bought a new car in 2022. — <strong>Past simple</strong></li>
+          <li>I have never tried Thai food. — <strong>Present perfect</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="activity3">
+      <h2>Activity 3: Match the Time Word</h2>
+      <p>Match the time word or phrase with the best tense.</p>
+
+      <table class="matching-table">
+        <thead>
+          <tr>
+            <th>Time word / phrase</th>
+            <th>Best tense</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. every morning</td>
+            <td>
+              <select id="t1" data-answer="simple present">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf1"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>2. yesterday</td>
+            <td>
+              <select id="t2" data-answer="past simple">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf2"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>3. never</td>
+            <td>
+              <select id="t3" data-answer="present perfect">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf3"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>4. last night</td>
+            <td>
+              <select id="t4" data-answer="past simple">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf4"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>5. always</td>
+            <td>
+              <select id="t5" data-answer="simple present">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf5"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>6. already</td>
+            <td>
+              <select id="t6" data-answer="present perfect">
+                <option value="">Choose...</option>
+                <option value="simple present">Simple present</option>
+                <option value="past simple">Past simple</option>
+                <option value="present perfect">Present perfect</option>
+              </select>
+              <span class="feedback" id="tf6"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="button-row">
+        <button onclick="checkTimeWords()">Check answers</button>
+        <button class="secondary" onclick="showTimeAnswers()">Show answers</button>
+        <button class="secondary" onclick="resetTimeWords()">Reset</button>
+        <button class="print" onclick="window.print()">Print worksheet</button>
+      </div>
+
+      <div class="answers" id="timeAnswers">
+        <h3>Answers</h3>
+        <ol>
+          <li>every morning — <strong>Simple present</strong></li>
+          <li>yesterday — <strong>Past simple</strong></li>
+          <li>never — <strong>Present perfect</strong></li>
+          <li>last night — <strong>Past simple</strong></li>
+          <li>always — <strong>Simple present</strong></li>
+          <li>already — <strong>Present perfect</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2>Speaking Practice</h2>
+      <p>Ask and answer these questions with a partner.</p>
+      <ol class="speaking-prompts">
+        <li>What do you usually do in the morning?</li>
+        <li>What did you do last weekend?</li>
+        <li>Have you ever studied another language?</li>
+        <li>What do you usually eat for breakfast?</li>
+        <li>Did you cook dinner last night?</li>
+        <li>Have you ever visited another city in Australia?</li>
+      </ol>
+
+      <div class="grammar-box">
+        <strong>Helpful sentence starters:</strong>
+        <p>I usually... / Yesterday, I... / Last weekend, I... / I have... / I have never...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    ESL Activity | Routines, Past Simple and Present Perfect
+  </footer>
+
+  <script>
+    function normalise(text) {
+      return text.trim().toLowerCase();
+    }
+
+    function checkTextAnswer(inputId, feedbackId) {
+      const input = document.getElementById(inputId);
+      const feedback = document.getElementById(feedbackId);
+      const studentAnswer = normalise(input.value);
+      const correctAnswer = normalise(input.dataset.answer);
+
+      if (studentAnswer === correctAnswer) {
+        feedback.textContent = "✓ Correct";
+        feedback.className = "feedback correct";
+      } else if (studentAnswer === "") {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      } else {
+        feedback.textContent = "✗ Try again";
+        feedback.className = "feedback incorrect";
+      }
+    }
+
+    function checkSelectAnswer(selectId, feedbackId) {
+      const select = document.getElementById(selectId);
+      const feedback = document.getElementById(feedbackId);
+
+      if (select.value === select.dataset.answer) {
+        feedback.textContent = "✓ Correct";
+        feedback.className = "feedback correct";
+      } else if (select.value === "") {
+        feedback.textContent = "";
+        feedback.className = "feedback";
+      } else {
+        feedback.textContent = "✗ Try again";
+        feedback.className = "feedback incorrect";
+      }
+    }
+
+    function checkGapFill() {
+      for (let i = 1; i <= 8; i++) {
+        checkTextAnswer(`q${i}`, `f${i}`);
+      }
+    }
+
+    function showGapAnswers() {
+      document.getElementById("gapAnswers").style.display = "block";
+    }
+
+    function resetGapFill() {
+      for (let i = 1; i <= 8; i++) {
+        document.getElementById(`q${i}`).value = "";
+        document.getElementById(`f${i}`).textContent = "";
+        document.getElementById(`f${i}`).className = "feedback";
+      }
+      document.getElementById("gapAnswers").style.display = "none";
+    }
+
+    function checkMatching() {
+      for (let i = 1; i <= 6; i++) {
+        checkSelectAnswer(`m${i}`, `mf${i}`);
+      }
+    }
+
+    function showMatchingAnswers() {
+      document.getElementById("matchingAnswers").style.display = "block";
+    }
+
+    function resetMatching() {
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById(`m${i}`).value = "";
+        document.getElementById(`mf${i}`).textContent = "";
+        document.getElementById(`mf${i}`).className = "feedback";
+      }
+      document.getElementById("matchingAnswers").style.display = "none";
+    }
+
+    function checkTimeWords() {
+      for (let i = 1; i <= 6; i++) {
+        checkSelectAnswer(`t${i}`, `tf${i}`);
+      }
+    }
+
+    function showTimeAnswers() {
+      document.getElementById("timeAnswers").style.display = "block";
+    }
+
+    function resetTimeWords() {
+      for (let i = 1; i <= 6; i++) {
+        document.getElementById(`t${i}`).value = "";
+        document.getElementById(`tf${i}`).textContent = "";
+        document.getElementById(`tf${i}`).className = "feedback";
+      }
+      document.getElementById("timeAnswers").style.display = "none";
+    }
+  </script>
+</body>
+</html>
